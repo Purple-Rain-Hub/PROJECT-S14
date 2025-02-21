@@ -3,12 +3,15 @@
 	ViewData["Title"] = "Scarpe & Co";
 }
 
-<div>
-	<h1>Scarpe & Co</h1>
+<div style="min-height: 80vh">
+	<h1>I Nostri Prodotti</h1>
 	<a asp-controller="Home" asp-action="Add" class="btn border-1 border-dark">Aggiungi Prodotto</a>
 
 	<div class="row mt-2">
-		@foreach (var article in Model.articles)
+		@if (Model.articles.Count <= 0){
+			<span>Non è presente alcun articolo!</span>
+		}
+		@foreach (var article in Model.articles!)
 		{
 			<div class="card p-0" style="width: 18rem;">
 				<img src="@article.Thumbnail" class="card-img-top" alt="thumbnailImg">

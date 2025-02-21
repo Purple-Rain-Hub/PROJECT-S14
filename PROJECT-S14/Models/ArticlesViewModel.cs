@@ -2,6 +2,6 @@
 {
     public class ArticlesViewModel
     {
-        public List<Article> articles {  get; set; }
+        public List<Article>? articles {  get; set; }
     }
 }

@@ -11,7 +11,6 @@ namespace PROJECT_S14.Controllers
 
         public IActionResult Index()
         {
-            
             var model = new ArticlesViewModel() { articles = Articles };
             return View(model);
         }
@@ -28,7 +27,7 @@ namespace PROJECT_S14.Controllers
             {
                 return View("Add", model);
             }
-            var modelImg = model.Images.FindAll(x => !string.IsNullOrWhiteSpace(x));
+            var modelImg = model.Images?.FindAll(x => !string.IsNullOrWhiteSpace(x));
 
             Article article = new Article()
             {
@@ -50,7 +49,7 @@ namespace PROJECT_S14.Controllers
 
             var articleDetails = new Article()
             {
-                Name = selectedArticle.Name,
+                Name = selectedArticle!.Name,
                 Price = selectedArticle.Price,
                 Description = selectedArticle.Description,
                 Thumbnail = selectedArticle.Thumbnail,
@@ -66,7 +65,7 @@ namespace PROJECT_S14.Controllers
             var selectedArticle = Articles.FirstOrDefault(x => x.Id == id);
             var articleEdit = new Article()
             {
-                Id = selectedArticle.Id,
+                Id = selectedArticle!.Id,
                 Name = selectedArticle.Name,
                 Price = selectedArticle.Price,
                 Description = selectedArticle.Description,
@@ -84,8 +83,8 @@ namespace PROJECT_S14.Controllers
                 return View("Edit", articleEdit);
             }
             var selectedArticle = Articles.FirstOrDefault(x => x.Id == id);
-            var articleEditImg = articleEdit.Images.FindAll(x => !string.IsNullOrWhiteSpace(x));
-            selectedArticle.Name = articleEdit.Name;
+            var articleEditImg = articleEdit.Images?.FindAll(x => !string.IsNullOrWhiteSpace(x));
+            selectedArticle!.Name = articleEdit.Name;
             selectedArticle.Price = articleEdit.Price;
             selectedArticle.Description = articleEdit.Description;
             selectedArticle.Thumbnail = articleEdit.Thumbnail;

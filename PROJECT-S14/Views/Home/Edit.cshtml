@@ -3,7 +3,7 @@
 	ViewData["Title"] = "Modifica Prodotto";
 }
 
-<div>
+<div style="min-height: 80vh">
 	<form method="post" asp-controller="Home" asp-action="SaveEdit" asp-route-id="@Model.Id">
 		<div>
 			<label for="name" asp-for="Name" class="form-label"></label>
@@ -31,7 +31,7 @@
 
 		<div>
 			<label for="image" asp-for="Images" class="form-label"></label>
-			@foreach (var image in Model.Images)
+			@foreach (var image in Model.Images!)
 			{
 				<input id="image" asp-for="Images" value="@image" class="form-control" />
 			}
