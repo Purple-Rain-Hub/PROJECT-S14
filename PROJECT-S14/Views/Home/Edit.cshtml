@@ -1,10 +1,10 @@
 ﻿@model Article
 @{
-	ViewData["Title"] = "Aggiungi Prodotto";
+	ViewData["Title"] = "Modifica Prodotto";
 }
 
 <div>
-	<form method="post" asp-controller="Home" asp-action="Create">
+	<form method="post" asp-controller="Home" asp-action="SaveEdit" asp-route-id="@Model.Id">
 		<div>
 			<label for="name" asp-for="Name" class="form-label"></label>
 			<input id="name" asp-for="Name" class="form-control" />
@@ -31,8 +31,10 @@
 
 		<div>
 			<label for="image" asp-for="Images" class="form-label"></label>
-			<input id="image" asp-for="Images" class="form-control" />
-			<span class="text-danger" asp-validation-for="Images"></span>
+			@foreach (var image in Model.Images)
+			{
+				<input id="image" asp-for="Images" value="@image" class="form-control" />
+			}
 		</div>
 		<div id="imgInput"></div>
 		<button class="btn border-1 border-dark" id="btnAddImg" type="button">aggiungi immagine aggiuntiva</button>
@@ -40,6 +42,7 @@
 		<div>
 			<button class="btn btn-success" type="submit">Save</button>
 			<button class="btn btn-warning" type="reset">Reset</button>
+			<a asp-controller="Home" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Elimina Articolo</a>
 		</div>
 	</form>
 </div>

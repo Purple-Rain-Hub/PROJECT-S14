@@ -1,17 +1,52 @@
 ﻿@model Article
 @{
-    ViewData["Title"] = "Dettagli Articolo";
+	ViewData["Title"] = "Dettagli Articolo";
 }
 <div>
-    <h1>Dettagli Articolo</h1>
 
-        <p>@Model.Name</p>
-        <p>@Model.Description</p>
-        <p>@Model.Price</p>
-        <img src="@Model.Thumbnail" />
-        @foreach (var images in Model.Images)
-        {
-            <img src="@images" />
-        }
-    
+	<div class="d-flex align-items-start">
+		<img src="@Model.Thumbnail" class="w-25"/>
+		<div class="card ms-4 w-75">
+			<div class="card-header">
+				<h2>@Model.Name</h2>
+			</div>
+			<div class="card-body">
+				<h5 class="card-title fw-bold">@Model.Price €</h5>
+				<p class="card-text">@Model.Description</p>
+				<a href="#" class="btn btn-warning">Buy</a>
+			</div>
+		</div>
+	</div>
+	<div class="mt-3">
+		<h5>Ulteriori Immagini del Prodotto</h5>
+		<div class="row align-items-center">
+		@foreach (var image in Model.Images!)
+		{
+				<img src="@image" style="width:150px; height:100%" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="openModal('@image')" />
+		}
+		</div>
+	</div>
 </div>
+
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<img id="modalImage" src="" class="w-100" />
+			</div>
+		</div>
+	</div>
+</div>
+@section Scripts{
+	<script>
+		function openModal(imageSrc) {
+			document.getElementById('modalImage').src = imageSrc;
+		}
+	</script>
+}
+
+
+ 
