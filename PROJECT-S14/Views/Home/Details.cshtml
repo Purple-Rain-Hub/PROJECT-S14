@@ -1,0 +1,17 @@
+﻿@model Article
+@{
+    ViewData["Title"] = "Dettagli Articolo";
+}
+<div>
+    <h1>Dettagli Articolo</h1>
+
+        <p>@Model.Name</p>
+        <p>@Model.Description</p>
+        <p>@Model.Price</p>
+        <img src="@Model.Thumbnail" />
+        @foreach (var images in Model.Images)
+        {
+            <img src="@images" />
+        }
+    
+</div>
